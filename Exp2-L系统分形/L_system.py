@@ -73,18 +73,29 @@ if __name__ == "__main__":
     学生可根据下方示例，调整参数体验不同分形效果
     """
     # 1. 生成并绘制科赫曲线
-    axiom = "F"  # 公理
-    rules = {"F": "F+F--F+F"}  # 规则
-    iterations = 3  # 迭代次数
-    angle = 60  # 每次转角
-    step = 10  # 步长
-    instr = apply_rules(axiom, rules, iterations)  # 生成指令字符串
-    draw_l_system(instr, angle, step, savefile="l_system_koch.png")  # 绘图并保存
+    koch_axiom = "F"
+    koch_rules = {'F': 'F+F--F+F'}
+    koch_angle = 60
+    koch_iter = 4
+    koch_step = 5
+    koch_cmds = apply_rules(koch_axiom, koch_rules, koch_iter)
+    plt.figure(figsize=(10, 3))
+    draw_l_system(koch_cmds, koch_angle, koch_step, initial_pos=(0, 0), initial_angle=0)
+    plt.title("L-System Koch Curve")
+    plt.axis('equal')
+    plt.axis('off')
+    plt.show()
 
     # 2. 生成并绘制分形二叉树
-    axiom = "0"
-    rules = {"1": "11", "0": "1[0]0"}
-    iterations = 5
-    angle = 45
-    instr = apply_rules(axiom, rules, iterations)
-    draw_l_system(instr, angle, step, savefile="fractal_tree.png")
+    tree_axiom = "0"
+    tree_rules = {'1': '11', '0': '1[0]0'}
+    tree_angle = 45
+    tree_iter = 7
+    tree_step = 7
+    tree_cmds = apply_rules(tree_axiom, tree_rules, tree_iter)
+    plt.figure(figsize=(7, 7))
+    draw_l_system(tree_cmds, tree_angle, tree_step, initial_pos=(0, 0), initial_angle=90, tree_mode=True)
+    plt.title("L-System Fractal Tree")
+    plt.axis('equal')
+    plt.axis('off')
+    plt.show()
